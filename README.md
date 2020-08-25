@@ -40,6 +40,7 @@ official website. https://rasa.com/
 
 ### convert poetry to ordinary python project
 
+rasa version == 2.0.0a1
 
 because i did not use poetry before, best way to me is convert this
 project to ordinary python project.

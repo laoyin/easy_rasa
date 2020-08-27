@@ -119,6 +119,18 @@ windows download this
 https://github.com/AshleyFang/Others/blob/master/Tools%20%26%20Zips/VC_redist.x64.exe
 
 
+now you can custom your own robot
 
+```buildoutcfg
+python start.py init
+```
 
+```buildoutcfg
+http://localhost:5005/webhooks/rest/webhook
+
+{
+	"sender": "test", "message": "i am fine"
+}
+
+```
 

@@ -7,6 +7,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - love
+  - faq
 
 responses:
   utter_greet:
@@ -34,3 +35,6 @@ responses:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+actions:
+  - respond_faq

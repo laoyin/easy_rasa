@@ -55,8 +55,8 @@
 - am I talking to a bot?
 - am I talking to a human?
 
-## intent:
-- are you a bot?
-- are you a human?
-- am I talking to a bot?
-- am I talking to a human?
+## intent:love
+- i am lonely
+- are you single?
+- are you lonely?
+- some one company you ?

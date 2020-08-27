@@ -1,0 +1,89 @@
+1: create rasa project
+
+    python start.py init
+
+    指定你运行时目录，
+
+    __init__.py
+    actions.py  自定义action
+    config.yml  NLU 模型
+    data/nlu.md  NLU 训练语料
+    data/stories.md   自定义话术
+
+    domain.yml    对话领域
+    models/<>.tar.gz  初始化模型
+
+
+    其中domain.yml , 意图，以及识别到意图后如何进行responses
+
+    ```
+        intents:
+      - greet
+      - goodbye
+      - affirm
+      - deny
+      - mood_great
+      - mood_unhappy
+      - bot_challenge
+
+    responses:
+      utter_greet:
+      - text: "Hey! How are you?"
+
+      utter_cheer_up:
+      - text: "Here is something to cheer you up:"
+        image: "https://i.imgur.com/nGF1K8f.jpg"
+
+      utter_did_that_help:
+      - text: "Did that help you?"
+
+      utter_happy:
+      - text: "Great, carry on!"
+
+      utter_goodbye:
+      - text: "Bye"
+
+      utter_iamabot:
+      - text: "I am a bot, powered by Rasa."
+
+    session_config:
+      session_expiration_time: 60
+      carry_over_slots_to_new_session: true
+
+    ```
+
+    data/nlu.md   为训练语料，
+
+    ```## intent:greet
+        - hey
+        - hello
+        - hi
+        - good morning
+        - good evening
+        - hey there
+
+        ## intent:goodbye
+        - bye
+        - goodbye
+        - see you around
+        - see you later
+    ```
+
+    其中 ## intent： 表示 一个意图， 下面皆为识别成此意图的 语料， 比如上述，greet意图， hey、hello、hi等皆为问候意图
+
+
+    data/stories.md   话术
+    此处story可以理解为 场景，一个个故事场景
+    比如，识别到 用户 问候意图场景， * 意图， 为识别到用户某一个意图， - utter_意图， 表示机器人应该如何回复，以下为，识别到
+    用户问候后，回复greet意图，
+    ## happy path
+    * greet
+      - utter_greet
+    * mood_great
+      - utter_happy
+
+     config.yml 可以进行配置，比如policies配置
+
+     domain.yml 制定话术触发意图后，如何进行reponse回复， 和story进行呼应
+
+

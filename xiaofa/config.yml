@@ -41,6 +41,8 @@ policies:
   - name: MemoizationPolicy
     max_history: 5
   - name: MappingPolicy
+#  - name: KerasPolicy
+  - name: FormPolicy
 # # No configuration for policies was provided. The following default policies were used to train your model.
 # # If you'd like to customize them, uncomment and adjust the policies.
 # # See https://rasa.com/docs/rasa/core/policies/ for more information.

@@ -1,0 +1,77 @@
+
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 100
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
+    epochs: 100
+
+在配置文件config.xml 中定义 pipline
+
+重要的包括，WhitespaceTokenizer， ResponseSelector， 后面进行解释（聪明的你甚至都能猜出其中意思）
+
+
+在data 目录下增加 responses.md  （xiaofa 目录下有完成代码）
+```
+## ask channels
+* faq/ask_channels
+  - We have a comprehensive list of [supported connectors](https://rasa.com/docs/core/connectors/), but if
+    you don't see the one you're looking for, you can always create a custom connector by following
+    [this guide](https://rasa.com/docs/rasa/user-guide/connectors/custom-connectors/).
+
+## ask languages
+* faq/ask_languages
+  - You can use Rasa to build assistants in any language you want!
+
+## ask rasa x
+* faq/ask_rasax
+ - Rasa X is a tool to learn from real conversations and improve your assistant. Read more [here](https://rasa.com/docs/rasa-x/)
+```
+
+faq 代表使用前缀，  在nlu中增加语料
+
+```
+## intent: faq/ask_channels
+- What channels of communication does rasa support?
+- what channels do you support?
+- what chat channels does rasa uses
+- channels supported by Rasa
+- which messaging channels does rasa support?
+
+## intent: faq/ask_languages
+- what language does rasa support?
+- which language do you support?
+- which languages supports rasa
+- can I use rasa also for another laguage?
+- languages supported
+
+## intent: faq/ask_rasax
+- I want information about rasa x
+- i want to learn more about Rasa X
+- what is rasa x?
+- Can you tell me about rasa x?
+- Tell me about rasa x
+- tell me what is rasa x
+```
+
+在 data/stories.md 中增加话术回复
+
+## Some question from FAQ
+* faq
+    - respond_faq
+
+
+ 可是 respond_faq  是什么东西？ 他怎么和 responses.md 中内容进行关联，答案是 在 domain.yml
+
+ ```
+ actions:
+  - respond_faq
+ ```

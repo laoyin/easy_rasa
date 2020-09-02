@@ -1,0 +1,32 @@
+pipeline: the list of the :class:`rasa.nlu.components.Component`
+
+所以pipeline 就是 nlu下的组件组成的list
+
+那么自定义pipeline就是自定义如何 实现 rasa.nlu.components.Component
+
+```
+    """A component is a message processing unit in a pipeline.
+
+    Components are collected sequentially in a pipeline. Each component
+    is called one after another. This holds for
+    initialization, training, persisting and loading the components.
+    If a component comes first in a pipeline, its
+    methods will be called first.
+
+    E.g. to process an incoming message, the ``process`` method of
+    each component will be called. During the processing
+    (as well as the training, persisting and initialization)
+    components can pass information to other components.
+    The information is passed to other components by providing
+    attributes to the so called pipeline context. The
+    pipeline context contains all the information of the previous
+    components a component can use to do its own
+    processing. For example, a featurizer component can provide
+    features that are used by another component down
+    the pipeline to do intent classification.
+    """
+```
+ 这段进行了完整的解释，所谓pipeline 就是多个component组成的列表，并且会被
+ 一个接着一个进行执行。
+
+ 第一放入pipeline的 component 会被第一个执行

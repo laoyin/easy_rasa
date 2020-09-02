@@ -1,0 +1,13 @@
+常用命令
+
+python ..\start.py  run -m models --enable-api --log-file out.log
+
+
+http://localhost:5005/webhooks/rest/webhook  POST
+{
+	"sender": "test", "message": "hello"
+}
+
+
+
+

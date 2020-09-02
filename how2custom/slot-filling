@@ -6,3 +6,67 @@ froms， and  FormPlicy 的使用
 
 
 增加 nlu语料 意图 contact_sales
+
+
+slots：官网解读
+       Slots are bot·s memory。是以key-vale形式存储，能够用来存储用户提供的信息、或者一定规则提取的信息
+
+       比如 和用户聊天中，你需要知道用户所在城市，你可以用 text类型定义一个 slot 命名为 home_city
+
+       slot 类型有 bool，text, list ,当你不知道何种类型使用  unfeaturized
+
+定义slot
+slots:
+  name:
+    type: text
+    initial_value: "human"
+
+actions.py 中如何使用
+data = tracker.get_slot("slot-name")
+
+
+
+happy_paths - situations where the user provides all the required information and lets the
+assistant drive the conversation
+
+Once the form acton `restaurant_form` get predicted, the assistant keeps asking for necessary
+detail until all required slots are set.
+
+There are no  restrictions in the initial restaurant request, for example, 'book me a table for
+two at the chinese restaurant', the assistant will keep the questions about the cuisine and
+number of people.
+
+
+## happy path
+* greet
+    - utter_greet
+* request_restaurant
+    - restaurant_form
+    - form{"name": "restaurant_form"}
+    - form{"name": null}
+    - utter_slots_values
+* thankyou
+    - utter_noworries
+
+
+
+ step 3: defining the domain
+ in order to train the dialogue management model with RASA, you also need to define the domin.
+ this is where you can specify which extracted details should be stored as slots.
+
+
+ In rasa, different slot types have a different influence on the predictions of the next action,
+ when using FormAction to fill the slots, you are enforcing strict rules which tell your assistant
+ what information it should ask for next.
+
+ the names of templates which will be used to ask for the missing required slots should
+ follow the format `utter_ask_{slotname}`. This is important for FormAction to know which
+ template to use for which slot.
+
+
+
+This is where the slot_mappings function in a FormAction comes in play - it defines how to extract slot values from possible user responses and maps them to a specific slot. Below is an example of the slot_mappings function for the previously discussed outdoor_seating slot. Based on the defined logic, the outdoor_seating slot will be populated using either:
+
+
+
+

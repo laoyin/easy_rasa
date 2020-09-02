@@ -1,0 +1,23 @@
+消息处理流程
+
+message-in -----> interpreter
+                      |
+                      |
+                      |
+                     \ /
+                      |
+Message Out         tracker  -------->  Policy
+    |                 |                    |
+   / \               / \                   |
+    |                 |                    |
+    |                 |                    |
+    |----------------Action  <------------
+
+
+  1：消息进入Interpreter后 转化为 字段 （包括 原文本，意图intent，实体entities等）
+
+  2：The Tracker  跟踪会话交流状态
+
+  3：policy 选择使用哪个action进行操作
+
+  4：response 返回数据给用户

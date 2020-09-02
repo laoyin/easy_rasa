@@ -1,0 +1,66 @@
+required_slots
+
+function is a great place to introduce some custom slot logic. For example,
+it might make sense to include the outdoors seating option only for the restaurants of a specific cuisine.
+You can achieve this by introducing simple logic like in the example below,
+where outdoor_seating slot will only be required when the users ask for restaurants which serve Greek food:
+
+
+
+outdoor_seating slot  只有当用户询问 提供greek food的餐厅时候，
+
+def required_slots(tracker):
+    # type: () -> List[Text]
+    """A list of required slots that the form has to fill"""
+
+    if tracker.get_slot('cuisine') == 'greek':
+        return ["cuisine", "num_people", "outdoor_seating",
+             	"preferences", "feedback"]
+    else:
+        return ["cuisine", "num_people",
+             	"preferences", "feedback"]
+
+当所有 slots 已经填充后，调用submit函数， 比如下方执行 template utter_submit, domain.yml 文件中定义的
+
+def submit(self):
+    """Define what the form has to do
+            after all required slots are filled"""
+
+    dispatcher.utter_template('utter_submit', tracker)
+    return []
+
+
+
+选择流程
+
+根据用户不同的输入，槽不一致，二分类等问题如何处理，
+当用户每次输入，因此slot_mappings 进行处理
+他定义了如何提取slot值，如何组织slot。
+
+如果用户回复的意图为 affirm，slot赋值 true
+如果用户回复意图为 deny，slot赋值 false
+如果用户回复内容包含 实体 setting，那么直接赋值
+
+def slot_mappings(self):
+    # type: () -> Dict[Text: Union[Dict, List[Dict]]]
+    """A dictionary to map required slots to
+    - an extracted entity
+    - intent: value pairs
+    - a whole message or a list of them, where a first
+                                 match will be picked"""
+
+    return { "outdoor_seating": [self.from_entity(entity="seating"),
+                      self.from_intent(intent='affirm',
+                                                 value=True),
+                      self.from_intent(intent='deny',
+                                                 value=False)]}
+
+
+
+
+
+Another useful thing you can do with FormAction is slot validation. For example, before allowing your assistant to move on with questions, you may want to check the slot value against possible values in your database or check if the value is in the right format. You can achieve that by creating a function called validate in your FormAction class. By default, it checks if the requested slot was extracted, but you can add as much additional logic as you need. Below is an example of the validation function which first checks if the requested slot was populated and later checks if the provided number of people is in the right format: if the number is an integer, the assistant will use the provided value, if not it will respond with a message that the format of the slot value is invalid, set the slot to None and ask for it again
+
+
+validate function
+

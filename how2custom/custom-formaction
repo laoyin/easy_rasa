@@ -99,3 +99,8 @@ def request_next_slot(
 此函数，假设当前 slot 为 cuisine， 并且 tracker 获取到 数据为 caribbean， 返回给用户 我无法帮助你。
 并调用，deactivate方法。
 
+
+
+deactivate " Form event with None  as name to deactivate the form and reset the request slot"
+
+等同于 stories中 定义    - form{"name": null}           <!--Deactivate the form-->

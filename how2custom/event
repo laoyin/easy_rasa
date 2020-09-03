@@ -1,0 +1,24 @@
+events
+
+set a slot : evt = {"event": "slot", "name": "departure_airport", "value": "BER"}
+
+class rasa.core.events.SlotSet
+
+
+Tracker 可以更新 slot 和他的值
+
+重新开始一轮对话： evt= {"event": "restart"}
+
+定时提醒：Schedule an intent to be triggered in the future.
+
+
+evt = {
+  "event": "reminder",
+  "intent": "my_intent",
+  "entities": {"entity1": "value1", "entity2": "value2"},
+  "date_time": "2018-09-03T11:41:10.128172",
+  "name": "my_reminder",
+  "kill_on_user_msg": True,
+}
+
+

@@ -1,0 +1,8 @@
+
+
+responses:
+  utter_greet:
+  - text: "Hey, {name}. How are you?"
+
+自定义action中定义返回值，加变量
+dispatcher.utter_message(template="utter_greet", my_variable="my text")

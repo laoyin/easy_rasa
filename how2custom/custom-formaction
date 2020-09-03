@@ -64,3 +64,38 @@ Another useful thing you can do with FormAction is slot validation. For example,
 
 validate function
 
+
+
+validate_{slot-name}
+
+
+request_next_slot: 可以定义下一个slot逻辑
+
+def request_next_slot(
+    self,
+    dispatcher: "CollectingDispatcher",
+    tracker: "Tracker",
+    domain: Dict[Text, Any],
+) -> Optional[List[EventType]]:
+    """Request the next slot and utter template if needed,
+        else return None"""
+    for slot in self.required_slots(tracker):
+        if self._should_request_slot(tracker, slot):
+
+            ## Condition of validated slot that triggers deactivation
+            if slot == "cuisine" and tracker.get_slot("cuisine") == "caribbean":
+                dispatcher.utter_message(text="Sorry, I can't help you with that")
+                return self.deactivate()
+
+            ## For all other slots, continue as usual
+            logger.debug(f"Request next slot '{slot}'")
+            dispatcher.utter_message(
+                template=f"utter_ask_{slot}", **tracker.slots
+            )
+            return [SlotSet(REQUESTED_SLOT, slot)]
+    return None
+
+
+此函数，假设当前 slot 为 cuisine， 并且 tracker 获取到 数据为 caribbean， 返回给用户 我无法帮助你。
+并调用，deactivate方法。
+

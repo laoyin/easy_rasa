@@ -18,6 +18,12 @@
 - of course
 - that sounds good
 - correct
+- 是的
+- 好的
+- 可以
+- 行
+- 没问题
+- ok
 
 ## intent:deny
 - no
@@ -26,6 +32,10 @@
 - don't like that
 - no way
 - not really
+- 不是
+- 错啦
+- 不行
+- 绝非
 
 ## intent:mood_great
 - perfect
@@ -36,6 +46,11 @@
 - I am feeling very good
 - I am great
 - I'm good
+- 真棒
+- 很好
+- 不错
+- 强
+- 厉害了
 
 ## intent:mood_unhappy
 - sad
@@ -112,10 +127,15 @@
 - [Jane Doe](person_name)
 - [Max Mustermann](person_name)
 - [Max Meier](person_name)
+- [IM system](use_case)
+- [AI system](use_case)
 - We plan to build a [sales bot](use_case) to increase our sales by 500%.
 - we plan to build a [sales bot](use_case) to increase our revenue by 100%.
 - a [insurance tool](use_case) that consults potential customers on the best life insurance to choose.
 - we're building a [conversational assistant](use_case) for our employees to book meeting rooms.
+- we're building a [conversational assistant](use_case)
+- we're building a [AI assistant](use_case)
+- we're building a [IM](use_case) system
 
 ## intent:contact_sales
 - But I wanted a sales call
@@ -311,6 +331,7 @@
 - Flexible, but looking for low-cost alternative to proof of concept
 - I am [Christina Sullivan](name)
 - I am [Hattie Rice](name)
+- I am [yxp](name)
 - I am [Robert Starks](name)
 - I am a [Data Scientist](job_function)
 - I am a [data scientist](job_function)

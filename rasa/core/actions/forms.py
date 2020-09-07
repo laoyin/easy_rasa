@@ -255,10 +255,12 @@ class FormAction(LoopAction):
         else return `None`.
         """
         slot_to_fill = tracker.get_slot(REQUESTED_SLOT)
+        print("Trying to extract requested slot {}".format(slot_to_fill))
         logger.debug(f"Trying to extract requested slot '{slot_to_fill}' ...")
 
         # get mapping for requested slot
         requested_slot_mappings = self.get_mappings_for_slot(slot_to_fill, domain)
+        print(requested_slot_mappings)
 
         for requested_slot_mapping in requested_slot_mappings:
             logger.debug(f"Got mapping '{requested_slot_mapping}'")
